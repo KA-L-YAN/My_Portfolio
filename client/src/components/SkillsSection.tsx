@@ -47,7 +47,7 @@ export default function SkillsSection() {
   ];
 
   return (
-    <section id="skills" className="min-h-screen py-20 bg-gradient-to-br from-blue-900/10 to-background" ref={ref}>
+    <section id="skills" className="py-20 bg-gradient-to-br from-blue-900/10 to-background" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           className="text-center mb-16"
@@ -141,13 +141,13 @@ export default function SkillsSection() {
 
         {/* Featured Projects Preview */}
         <motion.div
-          className="featured-projects"
+          className="featured-projects mb-0"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 1, delay: 1.5, ease: "easeOut" }}
         >
-          <h3 className="text-3xl font-space font-semibold text-center mb-12">Recent Work</h3>
-          <div className="grid md:grid-cols-3 gap-8">
+          <h3 className="text-3xl font-space font-semibold text-center mb-8">Recent Work</h3>
+          <div className="grid md:grid-cols-3 gap-6">
             {[
               {
                 title: "E-Commerce Platform",
@@ -185,12 +185,12 @@ export default function SkillsSection() {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className={`absolute inset-0 bg-gradient-to-t ${project.gradient} opacity-20 group-hover:opacity-40 transition-opacity duration-300`} />
                 </div>
-                <div className="p-6">
-                  <h4 className="text-xl font-semibold mb-2">{project.title}</h4>
+                <div className="p-4">
+                  <h4 className="text-lg font-semibold mb-1">{project.title}</h4>
                   <p className="text-muted-foreground text-sm">{project.tech}</p>
                 </div>
               </motion.div>
