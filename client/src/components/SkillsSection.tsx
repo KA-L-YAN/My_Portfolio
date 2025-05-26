@@ -111,7 +111,7 @@ export default function SkillsSection() {
         
         {/* Interactive Skills Showcase */}
         <motion.div
-          className="text-center"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 1, delay: 1, ease: "easeOut" }}
@@ -134,6 +134,65 @@ export default function SkillsSection() {
                 ref={magneticRef}
               >
                 <span className="text-lg font-medium">{tech}</span>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Featured Projects Preview */}
+        <motion.div
+          className="featured-projects"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 1, delay: 1.5, ease: "easeOut" }}
+        >
+          <h3 className="text-3xl font-space font-semibold text-center mb-12">Recent Work</h3>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "E-Commerce Platform",
+                tech: "React + Node.js",
+                image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
+                gradient: "from-primary to-secondary"
+              },
+              {
+                title: "Mobile Banking App",
+                tech: "React Native",
+                image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
+                gradient: "from-secondary to-pink-500"
+              },
+              {
+                title: "Analytics Dashboard",
+                tech: "Vue.js + D3",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
+                gradient: "from-accent to-pink-500"
+              }
+            ].map((project, index) => (
+              <motion.div
+                key={project.title}
+                className="project-preview glass rounded-2xl overflow-hidden group cursor-pointer"
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.8, delay: 1.7 + index * 0.2, ease: "easeOut" }}
+                whileHover={{ 
+                  scale: 1.05,
+                  rotateY: 5,
+                  z: 20
+                }}
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-t ${project.gradient} opacity-20 group-hover:opacity-40 transition-opacity duration-300`} />
+                </div>
+                <div className="p-6">
+                  <h4 className="text-xl font-semibold mb-2">{project.title}</h4>
+                  <p className="text-muted-foreground text-sm">{project.tech}</p>
+                </div>
               </motion.div>
             ))}
           </div>
