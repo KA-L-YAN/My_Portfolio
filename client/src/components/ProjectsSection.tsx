@@ -18,7 +18,7 @@ interface Project {
 
 function ProjectsSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [activeFilter, setActiveFilter] = useState("all");
   const magneticRef = useMagnetic();
 
@@ -97,36 +97,36 @@ function ProjectsSection() {
     : projects.filter(project => project.category === activeFilter);
 
   return (
-    <section id="projects" className="min-h-screen py-20" ref={ref}>
-      <div className="container mx-auto px-6">
+    <section id="projects" className="py-12 sm:py-16 md:py-20 overflow-hidden" ref={ref}>
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 100 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+          className="text-center mb-10 sm:mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <h2 className="text-5xl md:text-6xl font-space font-bold mb-6 gradient-text">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-space font-bold mb-4 sm:mb-6 gradient-text">
             Featured Projects
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
             A showcase of my latest work and creative solutions
           </p>
         </motion.div>
         
         {/* Project Filter */}
         <motion.div
-          className="flex flex-wrap justify-center gap-3 mb-12"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 px-2"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
           {filters.map((filter) => (
             <Button
               key={filter.value}
-              className={`px-4 py-2 text-sm sm:px-6 sm:py-3 sm:text-base rounded-full font-semibold transition-all duration-300 ${
+              className={`px-3 py-1.5 text-xs sm:px-4 sm:py-2 md:px-6 md:py-3 md:text-base rounded-full font-semibold transition-all duration-300 ${
                 activeFilter === filter.value
                   ? "bg-primary text-white"
-                  : "bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white"
+                  : "bg-transparent border border-primary text-primary hover:bg-primary hover:text-white"
               }`}
               onClick={() => setActiveFilter(filter.value)}
             >
@@ -135,67 +135,57 @@ function ProjectsSection() {
           ))}
         </motion.div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 px-2 sm:px-0">
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
-              className="project-card glass rounded-2xl overflow-hidden group cursor-pointer"
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{ duration: 0.8, delay: 0.4 + index * 0.1, ease: "easeOut" }}
-              whileHover={{ 
-                scale: 1.02,
-                rotateY: 2,
-                rotateX: 2,
-                z: 50
-              }}
-              style={{ transformStyle: "preserve-3d" }}
+              className="project-card bg-background/50 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg border border-primary/10"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.6, delay: 0.2 + index * 0.1, ease: "easeOut" }}
             >
-              <div className="relative overflow-hidden">
+              <div className="relative overflow-hidden group">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-48 sm:h-56 lg:h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-40 sm:h-48 md:h-56 object-cover transform transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
                 />
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                >
-                  <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6">
-                    <div className="flex gap-3">
-                      {project.demoUrl && (
-                        <motion.button
-                          className="bg-primary text-white px-3 py-2 sm:px-4 sm:py-2 rounded-full hover:scale-105 transition-transform duration-200"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                          onClick={() => window.open(project.demoUrl, '_blank')}
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                        </motion.button>
-                      )}
-                      {project.codeUrl && (
-                        <motion.button
-                          className="bg-secondary text-white px-3 py-2 sm:px-4 sm:py-2 rounded-full hover:scale-105 transition-transform duration-200"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                          onClick={() => window.open(project.codeUrl, '_blank')}
-                        >
-                          <Github className="w-4 h-4" />
-                        </motion.button>
-                      )}
-                    </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end p-4">
+                  <div className="flex gap-2 sm:gap-3">
+                    {project.demoUrl && (
+                      <Button
+                        size="sm"
+                        className="bg-primary text-white rounded-full hover:scale-105 transition-transform duration-200"
+                        onClick={() => window.open(project.demoUrl, '_blank')}
+                      >
+                        <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
+                      </Button>
+                    )}
+                    {project.codeUrl && (
+                      <Button
+                        size="sm"
+                        className="bg-secondary text-white rounded-full hover:scale-105 transition-transform duration-200"
+                        onClick={() => window.open(project.codeUrl, '_blank')}
+                      >
+                        <Github className="w-3 h-3 sm:w-4 sm:h-4" />
+                      </Button>
+                    )}
                   </div>
-                </motion.div>
+                </div>
               </div>
-              <div className="p-4 sm:p-6">
-                <h3 className="text-lg sm:text-xl font-space font-semibold mb-2">{project.title}</h3>
-                <p className="text-sm sm:text-base text-muted-foreground mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
+              <div className="p-4 sm:p-5">
+                <h3 className="text-base sm:text-lg md:text-xl font-space font-semibold mb-2 line-clamp-1">
+                  {project.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-muted-foreground mb-3 line-clamp-2 sm:line-clamp-3">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="bg-primary/20 text-primary px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm"
+                      className="bg-primary/10 text-primary px-2 py-0.5 rounded-full text-[10px] sm:text-xs whitespace-nowrap"
                     >
                       {tech}
                     </span>
@@ -207,19 +197,17 @@ function ProjectsSection() {
         </div>
         
         <motion.div
-          className="text-center mt-12"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
+          className="text-center mt-8 sm:mt-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
         >
-          <motion.div ref={magneticRef}>
-            <Button
-              className="bg-gradient-to-r from-primary to-secondary px-8 py-4 rounded-full text-white font-semibold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-primary/25"
-            >
-              View All Projects
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </motion.div>
+          <Button
+            className="bg-gradient-to-r from-primary to-secondary px-6 py-2 sm:px-8 sm:py-4 rounded-full text-white text-sm sm:text-base font-semibold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-primary/25"
+          >
+            View All Projects
+            <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
+          </Button>
         </motion.div>
       </div>
     </section>
