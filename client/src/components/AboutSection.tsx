@@ -8,16 +8,16 @@ export default function AboutSection() {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   const stats = [
-    { value: "5+", label: "Years", delay: 0 },
-    { value: "50+", label: "Projects", delay: 0.2 },
-    { value: "30+", label: "Clients", delay: 0.4 },
+    { value: "1+", label: "Years", delay: 0 },
+    { value: "7+", label: "Projects", delay: 0.2 },
+    { value: "5+", label: "Badges", delay: 0.4 },
   ];
 
   const aboutItems = [
     {
       icon: User,
       title: "Who I Am",
-      content: "I'm a creative developer with 5+ years of experience in crafting exceptional digital experiences. I specialize in front-end development, UI/UX design, and interactive animations.",
+      content: "I'm a creative developer with 1+ years of experience in crafting exceptional digital experiences. I specialize in Web development, Machine Learning, and Databases.",
       gradient: "from-primary to-secondary"
     },
     {
@@ -90,9 +90,9 @@ export default function AboutSection() {
                 transition={{ duration: 0.5 }}
               >
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=800"
+                  src="/prof.jpg"
                   alt="Professional developer portrait"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-[center_40%] scale-125"
                 />
               </motion.div>
               
@@ -106,15 +106,13 @@ export default function AboutSection() {
                     "top-1/2 -left-8"
                   }`}
                   initial={{ opacity: 0, scale: 0 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-                  transition={{ duration: 0.6, delay: 1 + stat.delay, ease: "easeOut" }}
-                  whileHover={{ scale: 1.1 }}
-                  style={{
-                    y: index === 0 ? [0, -20, 0] : index === 1 ? [0, -20, 0] : [0, -20, 0],
-                  }}
-                  animate={{
-                    ...isInView && { opacity: 1, scale: 1 },
-                    y: [0, -10, 0],
+                  animate={isInView ? { 
+                    opacity: 1, 
+                    scale: 1,
+                    y: [0, -10, 0]
+                  } : { 
+                    opacity: 0, 
+                    scale: 0 
                   }}
                   transition={{
                     opacity: { duration: 0.6, delay: 1 + stat.delay },

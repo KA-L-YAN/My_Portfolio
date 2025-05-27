@@ -10,10 +10,10 @@ export default function HeroSection() {
   const [isTyping, setIsTyping] = useState(true);
   
   const phrases = [
-    "Creative Frontend Developer",
-    "UI/UX Designer", 
-    "Animation Specialist",
-    "Digital Experience Creator"
+    "Web Developer",
+    "Machine Learning Enthusiast", 
+    "Tech Enthusiast",
+    "Database Specialist"
   ];
 
   const magneticRef = useMagnetic();
@@ -136,7 +136,7 @@ export default function HeroSection() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
             >
-              Alex Chen
+              Pavan Kalyan
             </motion.span>
           </motion.h1>
           

@@ -46,7 +46,7 @@ export default function Portfolio() {
         <div className="container mx-auto px-6 text-center">
           <div className="mb-8">
             <div className="text-3xl font-space font-bold gradient-text mb-4">
-              Alex Chen
+              Pavan Kalyan
             </div>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Creating digital experiences that inspire and engage. 
@@ -64,7 +64,7 @@ export default function Portfolio() {
           
           <div className="border-t border-gray-800 pt-8">
             <p className="text-muted-foreground">
-              © 2024 Alex Chen. All rights reserved. Built with passion and modern web technologies.
+              © 2025 Pavan Kalyan. All rights reserved. Built with passion and modern web technologies.
             </p>
           </div>
         </div>

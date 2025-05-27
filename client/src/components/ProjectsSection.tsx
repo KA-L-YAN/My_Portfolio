@@ -16,7 +16,7 @@ interface Project {
   codeUrl?: string;
 }
 
-export default function ProjectsSection() {
+function ProjectsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const [activeFilter, setActiveFilter] = useState("all");
@@ -25,71 +25,71 @@ export default function ProjectsSection() {
   const projects: Project[] = [
     {
       id: "1",
-      title: "E-Commerce Platform",
-      description: "Modern e-commerce solution with advanced filtering, payment integration, and responsive design.",
-      image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+      title: "Vehicle Service Management System",
+      description: "A comprehensive system for managing vehicle service operations, including service scheduling, inventory tracking, and customer management with automated service reminders.",
+      image: "https://images.unsplash.com/photo-1486006920555-c77dcf18193c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
       category: "web",
-      technologies: ["React", "Node.js", "MongoDB"],
+      technologies: ["Spring Boot", "MySQL", "Java"],
       demoUrl: "#",
-      codeUrl: "#"
+      codeUrl: "https://github.com/KA-L-YAN/VehicleServiceManagement"
     },
     {
       id: "2",
-      title: "Fitness Tracker App",
-      description: "Cross-platform mobile app for tracking workouts, nutrition, and health metrics with real-time sync.",
-      image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-      category: "mobile",
-      technologies: ["React Native", "Firebase", "Redux"],
+      title: "Brain Tumor Detection",
+      description: "Deep learning-based system for automated brain tumor detection and classification using MRI scans. Implements advanced image processing and CNN architecture for accurate medical diagnosis assistance.",
+      image: "https://images.unsplash.com/photo-1559757175-5700dde675bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+      category: "ml",
+      technologies: ["Python", "TensorFlow", "Deep Learning", "Scikit-learn"],
       demoUrl: "#",
-      codeUrl: "#"
+      codeUrl: "https://github.com/KA-L-YAN/Brain_tumor_detection_bpk"
     },
     {
       id: "3",
       title: "Creative Portfolio",
-      description: "Interactive portfolio website with advanced animations, 3D elements, and immersive user experience.",
+      description: "Modern and responsive personal portfolio website featuring smooth animations, interactive UI elements, and a dark theme. Implements best practices in web development with a focus on user experience.",
       image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
       category: "web",
-      technologies: ["Three.js", "GSAP", "WebGL"],
+      technologies: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
       demoUrl: "#",
       codeUrl: "#"
     },
     {
       id: "4",
-      title: "Banking App UI",
-      description: "Complete UI/UX design for a modern banking application with focus on security and user experience.",
-      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-      category: "design",
-      technologies: ["Figma", "Principle", "Adobe XD"],
+      title: "Bird Species Identification",
+      description: "AI-powered model for real-time bird species identification using computer vision. Features transfer learning with pre-trained models and custom dataset training.",
+      image: "https://images.unsplash.com/photo-1444464666168-49d633b86797?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+      category: "ml",
+      technologies: ["Python", "TensorFlow", "Streamlit", "OpenCV"],
       demoUrl: "#",
-      codeUrl: "#"
+      codeUrl: "https://github.com/KA-L-YAN/Bird-Species-Recognition"
     },
     {
       id: "5",
-      title: "Analytics Dashboard",
-      description: "Comprehensive data visualization platform with real-time charts, interactive filters, and export capabilities.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-      category: "web",
-      technologies: ["D3.js", "Vue.js", "Python"],
+      title: "SuperMarket Sale Analysis",
+      description: "Advanced data analytics system for retail sales prediction using machine learning. Features sales forecasting, customer segmentation, and inventory optimization with interactive dashboards for business insights.",
+      image: "https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+      category: "ml",
+      technologies: ["Python", "Scikit-learn", "Pandas", "Streamlit"],
       demoUrl: "#",
-      codeUrl: "#"
+      codeUrl: "https://github.com/KA-L-YAN/BB-Internship-Project"
     },
     {
       id: "6",
-      title: "Social Network App",
-      description: "Feature-rich social networking app with real-time messaging, media sharing, and community features.",
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-      category: "mobile",
-      technologies: ["Flutter", "GraphQL", "AWS"],
-      demoUrl: "#",
-      codeUrl: "#"
+      title: "My First Ever Protfolio Website",
+      description: "My first venture into web development - a personal portfolio showcasing my initial projects. Built from scratch using fundamental web technologies, this project marked the beginning of my journey in web development.",
+      image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+      category: "web",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      demoUrl: "https://kalyan-here.netlify.app/",
+      codeUrl: "https://github.com/KA-L-YAN/Personal-Website"
     },
   ];
 
   const filters = [
     { label: "All", value: "all" },
     { label: "Web Apps", value: "web" },
-    { label: "Mobile", value: "mobile" },
-    { label: "Design", value: "design" },
+    { label: "Machine Learning", value: "ml" },
+    { label: "More", value: "more" },
   ];
 
   const filteredProjects = activeFilter === "all" 
@@ -169,6 +169,7 @@ export default function ProjectsSection() {
                           className="bg-primary text-white px-4 py-2 rounded-full hover:scale-105 transition-transform duration-200"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
+                          onClick={() => window.open(project.demoUrl, '_blank')}
                         >
                           <ExternalLink className="w-4 h-4" />
                         </motion.button>
@@ -178,6 +179,7 @@ export default function ProjectsSection() {
                           className="bg-secondary text-white px-4 py-2 rounded-full hover:scale-105 transition-transform duration-200"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
+                          onClick={() => window.open(project.codeUrl, '_blank')}
                         >
                           <Github className="w-4 h-4" />
                         </motion.button>
@@ -223,3 +225,5 @@ export default function ProjectsSection() {
     </section>
   );
 }
+
+export default ProjectsSection;

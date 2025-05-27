@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter } from "lucide-react";
-import { FaDribbble } from "react-icons/fa";
+import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Brain } from "lucide-react";
 import { useMagnetic } from "@/hooks/useMagnetic";
+import emailjs from '@emailjs/browser';
 
 interface FormData {
   firstName: string;
@@ -19,8 +19,10 @@ interface FormData {
 
 export default function ContactSection() {
   const ref = useRef(null);
+  const formRef = useRef<HTMLFormElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
-  const magneticRef = useMagnetic();
+  const magneticRef = useMagnetic<HTMLDivElement>();
+  const magneticAnchorRef = useMagnetic<HTMLAnchorElement>();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
@@ -38,35 +40,36 @@ export default function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
 
-      if (response.ok) {
-        const result = await response.json();
-        alert(result.message);
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
-      } else {
-        const error = await response.json();
-        alert(`Error: ${error.error}`);
-      }
+    try {
+      const templateParams = {
+        from_name: `${formData.firstName} ${formData.lastName}`,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_name: 'Pavan Kalyan',
+      };
+
+      await emailjs.send(
+        'service_kws7n0n', // EmailJS service ID
+        'template_mpuvmt8', // EmailJS template ID
+        templateParams,
+        'dlTYfnl4iRAPcWzTO' // EmailJS public key
+      );
+
+      alert('Thank you for your message! I will get back to you soon.');
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
     } catch (error) {
-      console.error('Error submitting form:', error);
-      alert("Sorry, there was an error sending your message. Please try again.");
+      console.error('Error sending email:', error);
+      alert('Sorry, there was an error sending your message. Please try again.');
     }
-    
+
     setIsSubmitting(false);
   };
 
@@ -74,28 +77,28 @@ export default function ContactSection() {
     {
       icon: Mail,
       title: "Email",
-      value: "alex.chen@example.com",
+      value: "kalyan.07x@gmail.com",
       gradient: "from-primary to-secondary"
     },
     {
       icon: Phone,
       title: "Phone",
-      value: "+1 (555) 123-4567",
+      value: "+91 6300093146",
       gradient: "from-secondary to-pink-500"
     },
     {
       icon: MapPin,
       title: "Location",
-      value: "San Francisco, CA",
+      value: "Hyderabad, India",
       gradient: "from-accent to-pink-500"
     },
   ];
 
   const socialLinks = [
-    { icon: Github, href: "#", label: "GitHub" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: FaDribbble, href: "#", label: "Dribbble" },
+    { icon: Github, href: "https://github.com/KA-L-YAN", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/pavan-kalyan-budamacharla-5a07451ba/", label: "LinkedIn" },
+    { icon: Twitter, href: "https://x.com/Pavan_x_Kalyan", label: "Twitter" },
+    { icon: Brain, href: "https://huggingface.co", label: "Machine Learning" },
   ];
 
   return (
@@ -169,7 +172,7 @@ export default function ContactSection() {
                     className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-all duration-300"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     whileTap={{ scale: 0.95 }}
-                    ref={magneticRef}
+                    ref={magneticAnchorRef}
                   >
                     <Icon className="w-5 h-5" />
                   </motion.a>
@@ -184,7 +187,7 @@ export default function ContactSection() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <form onSubmit={handleSubmit} className="glass rounded-2xl p-8 space-y-6">
+            <form onSubmit={handleSubmit} className="glass rounded-2xl p-8 space-y-6" ref={formRef}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="form-group">
                   <Label htmlFor="firstName" className="text-sm font-medium mb-2">
