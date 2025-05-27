@@ -115,7 +115,7 @@ function ProjectsSection() {
         
         {/* Project Filter */}
         <motion.div
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          className="flex flex-wrap justify-center gap-3 mb-12"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -123,7 +123,7 @@ function ProjectsSection() {
           {filters.map((filter) => (
             <Button
               key={filter.value}
-              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+              className={`px-4 py-2 text-sm sm:px-6 sm:py-3 sm:text-base rounded-full font-semibold transition-all duration-300 ${
                 activeFilter === filter.value
                   ? "bg-primary text-white"
                   : "bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white"
@@ -135,7 +135,7 @@ function ProjectsSection() {
           ))}
         </motion.div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -155,18 +155,18 @@ function ProjectsSection() {
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-48 sm:h-56 lg:h-64 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
                 >
-                  <div className="absolute bottom-6 left-6 right-6">
+                  <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6">
                     <div className="flex gap-3">
                       {project.demoUrl && (
                         <motion.button
-                          className="bg-primary text-white px-4 py-2 rounded-full hover:scale-105 transition-transform duration-200"
+                          className="bg-primary text-white px-3 py-2 sm:px-4 sm:py-2 rounded-full hover:scale-105 transition-transform duration-200"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
                           onClick={() => window.open(project.demoUrl, '_blank')}
@@ -176,7 +176,7 @@ function ProjectsSection() {
                       )}
                       {project.codeUrl && (
                         <motion.button
-                          className="bg-secondary text-white px-4 py-2 rounded-full hover:scale-105 transition-transform duration-200"
+                          className="bg-secondary text-white px-3 py-2 sm:px-4 sm:py-2 rounded-full hover:scale-105 transition-transform duration-200"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
                           onClick={() => window.open(project.codeUrl, '_blank')}
@@ -188,14 +188,14 @@ function ProjectsSection() {
                   </div>
                 </motion.div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-space font-semibold mb-2">{project.title}</h3>
-                <p className="text-muted-foreground mb-4">{project.description}</p>
+              <div className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-space font-semibold mb-2">{project.title}</h3>
+                <p className="text-sm sm:text-base text-muted-foreground mb-4">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm"
+                      className="bg-primary/20 text-primary px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm"
                     >
                       {tech}
                     </span>
